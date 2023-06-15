@@ -2,12 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import CreateContext from "../Components/CreateContex";
-import { FaFacebookF } from "react-icons/fa";
+// import { FaFacebookF } from "react-icons/fa";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { GrInstagram } from "react-icons/gr";
-import { BsYoutube } from "react-icons/bs";
+// import { BsYoutube } from "react-icons/bs";
 import { BsPinterest } from "react-icons/bs";
 import Head from "next/head";
+
+import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import { BsYoutube } from "react-icons/bs";
+import { BsDot } from "react-icons/bs";
+import { FaAngleDoubleRight } from "react-icons/fa";
+import logo from '../assets/click the point/Click the point2.png'
 
 const Footers = () => {
   const { dark, blogs, refresh } = useContext(CreateContext);
@@ -34,7 +40,7 @@ const Footers = () => {
       <Head>
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
-      <div className="bg-accent border-t">
+      {/* <div className="bg-accent border-t">
         <div className="mid-container">
           <footer className="footer md:px-10 py-10 pb-20 ">
             <div className="space-y-3">
@@ -46,11 +52,7 @@ const Footers = () => {
 
             <div className="space-y-3">
               <span className="text-xl font-semibold">Categories</span>
-              {/* {categories?.slice(2, 7).map((item) => (
-                <div>
-                  <a className="link link-hover">{item}</a>
-                </div>
-              ))} */}
+             
 
               {
                 categories?.slice(0, 5)?.map((item, index) => (
@@ -68,12 +70,7 @@ const Footers = () => {
                   <span>Facebook</span>
                 </div>
               </Link>
-              {/* <Link href="#" className="link link-hover hover:underline-none">
-                <div className="flex items-center space-x-2">
-                  <AiOutlineTwitter className="text-xl" />
-                  <span>Twitter</span>
-                </div>
-              </Link> */}
+              
               <Link href="https://www.youtube.com/@Clickthepoint" target={"_blank"} className="link link-hover hover:underline-none">
                 <div className="flex items-center space-x-2">
                   <GrInstagram className="text-xl" />
@@ -86,12 +83,7 @@ const Footers = () => {
                   <span>Youtube</span>
                 </div>
               </Link>
-              {/* <Link href="#" className="link link-hover hover:underline-none">
-                <div className="flex items-center space-x-2">
-                  <BsPinterest className="text-xl" />
-                  <span>Pinterest</span>
-                </div>
-              </Link> */}
+              
             </div>
             <div>
               <span className="text-xl font-semibold">Newsletter</span>
@@ -133,9 +125,7 @@ const Footers = () => {
                     Click The Point
                   </span>{". "}
                 </Link>
-                {/* <span>Developed by{" "}
-                  <a href="https://risosi.com" target={"_blank"} className="font-bold" style={{ color: "#3185fc" }}>RISOSI</a>
-                </span> */}
+               
 
               </p>
             </div>
@@ -156,7 +146,61 @@ const Footers = () => {
             </div>
           </footer>
         </div>
-      </div>
+      </div> */}
+
+      {/* New Footer */}
+
+      <footer className="p-10 bg-white">
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="flex flex-col space-y-4">
+            <div>
+              <Image src={logo} alt="logo" width={100} height={100}></Image>
+            </div>
+            <h1 className='text-[#000000a6] text-[16px] font-serif'>Introbangla Limited is an esteemed partner and a powerhouse in the field of Software Development and Testing services. We are renowned for our expertise and are trusted by our clients.</h1>
+            <div className="flex py-5">
+              <FaFacebookF className="w-12 h-12 p-2" />
+              <BsYoutube className="w-12 h-12 p-2" />
+              <FaLinkedinIn className="w-12 h-12 p-2" />
+            </div>
+          </div>
+          <div className="">
+            <h2 className="font-extrabold text-xl">Quick Links</h2>
+            <div className="grid grid-cols-2">
+              <div className="flex flex-col">
+                <a className='text-[#000000a6] text-[16px] font-serif pt-2 hover:underline underline-offset-1 flex items-center' href="#"><span><BsDot className="w-8 h-8"></BsDot></span> Web Development</a>
+                <a className='text-[#000000a6] text-[16px] font-serif  hover:underline underline-offset-1 flex items-center' href="#"><span><BsDot className="w-8 h-8"></BsDot></span> App Development</a>
+                <a className='text-[#000000a6] text-[16px] font-serif  hover:underline underline-offset-1 flex items-center' href="#"><span><BsDot className="w-8 h-8"></BsDot></span>QA & Test Automation</a>
+                <a className='text-[#000000a6] text-[16px] font-serif  hover:underline underline-offset-1 flex items-center' href="#"><span><BsDot className="w-8 h-8"></BsDot></span>UI/UX Design</a>
+                <a className='text-[#000000a6] text-[16px] font-serif  hover:underline underline-offset-1 flex items-center' href="#"><span><BsDot className="w-8 h-8"></BsDot></span>SEO Optimization</a>
+                <a className='text-[#000000a6] text-[16px] font-serif  hover:underline underline-offset-1 flex items-center' href="#"><span><BsDot className="w-8 h-8"></BsDot></span>Digital Marketing</a>
+
+              </div>
+              <div className="flex flex-col">
+                <a className='text-[#000000a6] text-[16px] font-serif pt-2 hover:underline underline-offset-1 flex items-center' href="#"><span><BsDot className="w-8 h-8"></BsDot></span> Overview</a>
+                <a className='text-[#000000a6] text-[16px] font-serif hover:underline underline-offset-1 flex items-center' href="#"><span><BsDot className="w-8 h-8"></BsDot></span> Team</a>
+                <a className='text-[#000000a6] text-[16px] font-serif hover:underline underline-offset-1 flex items-center' href="#"><span><BsDot className="w-8 h-8"></BsDot></span> portfolio</a>
+                <a className='text-[#000000a6] text-[16px] font-serif hover:underline underline-offset-1 flex items-center' href="#"><span><BsDot className="w-8 h-8"></BsDot></span> Career</a>
+                <a className='text-[#000000a6] text-[16px] font-serif hover:underline underline-offset-1 flex items-center' href="#"><span><BsDot className="w-8 h-8"></BsDot></span> Contact</a>
+                <a className='text-[#000000a6] text-[16px] font-serif hover:underline underline-offset-1 flex items-center' href="#"><span><BsDot className="w-8 h-8"></BsDot></span> Privacy Policy</a>
+
+              </div>
+            </div>
+          </div>
+          <div className="  rounded-md p-5">
+            <h2 className="text-xl font-extrabold">Newsletter</h2>
+            <p className="text-xl py-4">Sing up to get more every updates</p>
+            <input type="text" placeholder="Email Address" className="input input-bordered w-full" />
+            <button className="btn btn-success text-white mt-4 ">Subscribe Now <span className="ml-4"> <FaAngleDoubleRight /></span></button>
+          </div>
+
+        </div>
+      </footer>
+
+      <footer className="footer footer-center p-4 bg-base-300 text-base-content">
+        <div>
+          <p>Copyright © 2023 - All right reserved By Click The Point.</p>
+        </div>
+      </footer>
     </>
   );
 };

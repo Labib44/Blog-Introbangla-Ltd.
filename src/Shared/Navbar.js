@@ -10,6 +10,7 @@ import { MdOutlineDashboard } from 'react-icons/md';
 import TopNav from "./Header/TopNav";
 import { signOut } from "firebase/auth";
 import auth from "./firebaseInit";
+import DropDownMenu from "./DropDownMenu";
 
 const Navbar = () => {
   const router = useRouter();
@@ -25,6 +26,19 @@ const Navbar = () => {
   } = useContext(CreateContext);
 
   const userRole = user?.role;
+
+  const menuItem = <>
+    <li><Link href="/" className=" hover:underline underline-offset-8 decoration-2 decoration-primary hover:text-primary focus:bg-white hover:bg-white active:bg-white">Techonology</Link></li>
+    <li><Link href="/" className=" hover:underline underline-offset-8 decoration-2 decoration-primary hover:text-primary focus:bg-white hover:bg-white active:bg-white">Portfolio</Link></li>
+    <li><Link href="/all-blogs" className=" hover:underline underline-offset-8 decoration-2 decoration-primary hover:text-primary focus:bg-white hover:bg-white active:bg-white">Blog</Link></li>
+    <li><Link href="/" className=" hover:underline underline-offset-8 decoration-2 decoration-primary hover:text-primary focus:bg-white hover:bg-white active:bg-white">Contact</Link></li>
+    {
+      userRole === 'admin' && (
+        <li><Link href="/admin/all-blogs" className=" hover:underline underline-offset-8 decoration-2 decoration-primary hover:text-primary focus:bg-white hover:bg-white active:bg-white">Dashboard</Link></li>
+        
+      )
+    }
+  </>
 
   useEffect(() => {
     setRefresh(true)
@@ -51,8 +65,8 @@ const Navbar = () => {
 
   return (
     <>
-      <TopNav />
-      <div className='shadow-sm sticky top-0 z-50 bg-base-100'>
+      {/* <TopNav /> */}
+      {/* <div className='shadow-sm sticky top-0 z-50 bg-base-100'>
         <div className='mid-container '>
           <div className="navbar bg-base-100 px-0 py-3">
 
@@ -148,7 +162,65 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      </div >
+      </div > */}
+
+      {/* new navbar */}
+
+      <div className="navbar mid-container">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
+            <ul tabIndex={0} className="menu menu-sm dropdown-content bg-gray-200 mt-3 p-2 w-52 ">
+
+              <DropDownMenu></DropDownMenu>
+              {menuItem}
+            </ul>
+          </div>
+          <div className='cursor-pointer'>
+            <Link href="/">
+              <Image
+                src={logo}
+                alt="logo"
+                width={100}
+                height={100}
+                className='py-2 rounded-full'
+              ></Image>
+            </Link>
+          </div>
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">
+            <DropDownMenu></DropDownMenu>
+            {menuItem}
+          </ul>
+        </div>
+        <div className="navbar-end">
+
+          {
+            !token && !user && (
+
+              <button onClick={() => handleLogin()} className="btn btn-outline rounded-none">
+                Client Login
+              </button>
+            )
+          }
+
+          {
+            token && userRole === "admin" &&
+            <button onClick={() => handleLogOut()} className="btn btn-outline rounded-none">
+              LogOut
+            </button>
+          }
+          {
+            token && userRole === "user" &&
+            (<button onClick={() => handleLogOut()} className="btn btn-outline rounded-none">
+              LogOut
+            </button>)
+          }
+        </div>
+      </div>
     </>
   );
 };
