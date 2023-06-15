@@ -23,6 +23,14 @@ const DashboardLayout = ({ children }) => {
             <AiOutlineRight />
           </Link></li>
 
+          <li className='mb-2'>
+            <Link
+              className='flex justify-between items-center' href={'/admin/category'}>
+              <h6 className='font-bold text-[15px]'> Blogs Category</h6>
+              <AiOutlineRight />
+            </Link>
+          </li>
+
           <li className='mb-2'><Link
             className='flex justify-between items-center' href={'/admin/add/blog'}>
             <h6 className='font-bold text-[15px]'> Create a New Blog</h6>
@@ -58,13 +66,6 @@ const DashboardLayout = ({ children }) => {
               </ul>
             </li>
           </ul>
-
-          <li className='mb-2'><Link
-            className='flex justify-between items-center' href={'/admin/category'}>
-            <h6 className='font-bold text-[15px]'> Blogs Category</h6>
-            <AiOutlineRight />
-          </Link>
-          </li>
 
           <li className='mb-2'><Link
             className='flex justify-between items-center' href={'/admin/ad-banner'}>
