@@ -10,7 +10,6 @@ const CategoryBlog = () => {
     const { id } = router.query;
     const [srcValue, setSrcValue] = useState('');
 
-
     const categoryBlogs = blogs?.filter((blog) => blog?.category === id);
 
     const filterBlog = categoryBlogs?.filter((item) => {

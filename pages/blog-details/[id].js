@@ -195,7 +195,7 @@ const BlogDetails = () => {
                                             </div>
                                         </div>
                                         <div className="ml-6">
-                                            <p className="antialiased  text-lg  font-normal flex">
+                                            <p className="antialiased  text-lg cursor-pointer  font-normal flex" onClick={() => router.push(`/author-blog/${blog?.authorName}`)}>
                                                 {blog?.authorName}{" "}
                                                 <span className=" sm:block hidden">
                                                     <span className="badge badge-xs badge-primary font-semibold text-white  ml-3 p-2">
