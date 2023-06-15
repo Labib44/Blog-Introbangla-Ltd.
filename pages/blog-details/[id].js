@@ -67,7 +67,7 @@ const BlogDetails = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch(` https://backend.lobdho.com/clickthepoint/api/v1/blog?path=${id}`)
+        fetch(`https://backend.lobdho.com/clickthepoint/api/v1/blog?path=${id}`)
             .then((res) => res.json())
             .then((data) => {
                 setBlog(data?.data.blogs[0]);
