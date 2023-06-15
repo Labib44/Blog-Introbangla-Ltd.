@@ -1,34 +1,31 @@
-import React, { useContext, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import CreateContext from '../../src/Components/CreateContex';
-import LatestBlogItem from '../../src/Components/LatestBlog.js/LatestBlogItem';
-import { toggleFilters } from '../../src/features/filter/filterSlice';
-import BlogLoader from '../../src/Shared/BlogLoader';
-import LoadingComponents from '../../src/Shared/LoadingComponents';
+import React, { useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import CreateContext from "../../src/Components/CreateContex";
+import LatestBlogItem from "../../src/Components/LatestBlog.js/LatestBlogItem";
+import { toggleFilters } from "../../src/features/filter/filterSlice";
+import BlogLoader from "../../src/Shared/BlogLoader";
+import LoadingComponents from "../../src/Shared/LoadingComponents";
 
 
 const index = () => {
-    const { filters } = useSelector(state => state.filter)
-    const dispatch = useDispatch()
-    const [srcValue, setSrcValue] = useState('');
+    const { filters } = useSelector((state) => state.filter);
+    const dispatch = useDispatch();
+    const [srcValue, setSrcValue] = useState("");
 
-    const {
-        dark,
-        blogs,
-        loading
-    } = useContext(CreateContext);
+    const { dark, blogs, loading } = useContext(CreateContext);
 
-    const activeClass = `bg-warning ${dark && 'text-[#fffff] bg-primary border-warning'} text-white`
+    const activeClass = `bg-warning ${
+        dark && "text-[#fffff] bg-primary border-warning"
+    } text-white`;
 
-    let content
+    let content;
 
     const filterBlog = blogs?.filter((item) => {
-        if (srcValue === '') {
+        if (srcValue === "") {
             return item;
         }
         return item.title.toLowerCase().includes(srcValue.toLowerCase());
     });
-
 
     if (filterBlog?.length) {
         content = filterBlog.map((item) => (
@@ -54,27 +51,33 @@ const index = () => {
     }
 
     if (!filterBlog.length && !loading) {
-        content = <h1 className="text-center text-red-600 text-2xl font-bold">No Blogs Found !</h1>
+        content = (
+            <h1 className="text-center text-red-600 text-2xl font-bold">
+                No Blogs Found !
+            </h1>
+        );
     }
 
     if (loading) {
-        content = <>
-            <BlogLoader />
-            <BlogLoader />
-            <BlogLoader />
-            <BlogLoader />
-            <BlogLoader />
-            <BlogLoader />
-        </>
+        content = (
+            <>
+                <BlogLoader />
+                <BlogLoader />
+                <BlogLoader />
+                <BlogLoader />
+                <BlogLoader />
+                <BlogLoader />
+            </>
+        );
     }
 
-    const categorySet = new Set(blogs?.map(item => item?.category))
-    const categories = Array.from(categorySet).sort()
+    const categorySet = new Set(blogs?.map((item) => item?.category));
+    const categories = Array.from(categorySet).sort();
 
     return (
-        <div className='mid-container'>
-            <div className='mt-5 mb-5'>
-                <h1 className='text-4xl text-center font-bold'>All Blogs</h1>
+        <div className="mid-container">
+            <div className="mt-5 mb-5">
+                <h1 className="text-4xl text-center font-bold">All Blogs</h1>
                 {/* <p className='text-sm text-center mt-2'>Travel, inspiration and tips for your next adventure. Discover the world with us!</p> */}
             </div>
 
@@ -84,6 +87,7 @@ const index = () => {
                         <div className="input-group relative flex  items-stretch w-full mb-4">
                             {/* dropDown */}
                            
+
                             <input
                                 onChange={(e) => {
                                     setSrcValue(e.target.value);
@@ -121,35 +125,48 @@ const index = () => {
 
                     </div>
                 </div>
-
             </div>
-
             <div className='md:flex gap-10 '>
                 {/* <div className='md:w-[15%] pb-10'>
                     <div className=' sticky top-32'>
                         <h1 className='font-semibold text-xl my-5 border-b pb-2'>Category</h1>
                         <div className=" grid gap-3 mb-10 w-full">
-                            {
-                                categories?.length > 0 && (
-                                    <div
-                                        onClick={() => dispatch(toggleFilters('all'))}
-                                        className={`border flex justify-center items-center px-4 py-2   hover:border-red rounded-3xl cursor-pointer ${filters.includes('all') ? activeClass : null}`}>All</div>
-                                )
-                            }
-                            {
-                                categories?.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        onClick={() => dispatch(toggleFilters(item))}
-                                        className={`border flex justify-center items-center px-4 py-2   hover:border-red rounded-3xl cursor-pointer ${filters.includes(item) ? activeClass : null}`}>{item}</div>
-                                ))
-                            }
+                            {categories?.length > 0 && (
+                                <div
+                                    onClick={() =>
+                                        dispatch(toggleFilters("all"))
+                                    }
+                                    className={`border flex justify-center items-center px-4 py-2   hover:border-red rounded-3xl cursor-pointer ${
+                                        filters.includes("all")
+                                            ? activeClass
+                                            : null
+                                    }`}
+                                >
+                                    All
+                                </div>
+                            )}
+                            {categories?.map((item, index) => (
+                                <div
+                                    key={index}
+                                    onClick={() =>
+                                        dispatch(toggleFilters(item))
+                                    }
+                                    className={`border flex justify-center items-center px-4 py-2   hover:border-red rounded-3xl cursor-pointer ${
+                                        filters.includes(item)
+                                            ? activeClass
+                                            : null
+                                    }`}
+                                >
+                                    {item}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div> */}
 
                 <div className='min-h-[65vh] md:w-[100%]'>
                     <div className='grid lg:grid-cols-3 md:grid-cols-2  gap-x-5 gap-y-7 mb-24 '>
+
                         {content}
                     </div>
                 </div>
