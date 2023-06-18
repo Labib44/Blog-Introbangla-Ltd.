@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { CgSearch } from 'react-icons/cg';
-import logo from '../assets/click the point/Click the point2.png'
+import logo from '../assets/click the point/HeaderLogo-101982a7.png'
 import { useRouter } from "next/router";
 import CreateContext from "../Components/CreateContex";
 import profile from '../assets/profile.jpg'
@@ -13,6 +13,7 @@ import auth from "./firebaseInit";
 import DropDownMenu from "./DropDownMenu";
 
 const Navbar = () => {
+  const [isNavVisible, setIsNavVisible] = useState(true);
   const router = useRouter();
   const { pathname } = useRouter();
   const {
@@ -28,14 +29,14 @@ const Navbar = () => {
   const userRole = user?.role;
 
   const menuItem = <>
-    <li><Link href="/" className=" hover:underline underline-offset-8 decoration-2 decoration-primary hover:text-primary focus:bg-white hover:bg-white active:bg-white">Techonology</Link></li>
-    <li><Link href="/" className=" hover:underline underline-offset-8 decoration-2 decoration-primary hover:text-primary focus:bg-white hover:bg-white active:bg-white">Portfolio</Link></li>
-    <li><Link href="/all-blogs" className=" hover:underline underline-offset-8 decoration-2 decoration-primary hover:text-primary focus:bg-white hover:bg-white active:bg-white">Blog</Link></li>
-    <li><Link href="/" className=" hover:underline underline-offset-8 decoration-2 decoration-primary hover:text-primary focus:bg-white hover:bg-white active:bg-white">Contact</Link></li>
+    <li><Link href="/" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Techonology</Link></li>
+    <li><Link href="/" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Portfolio</Link></li>
+    <li><Link href="/all-blogs" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Blog</Link></li>
+    <li><Link href="/" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Contact</Link></li>
     {
       userRole === 'admin' && (
-        <li><Link href="/admin/all-blogs" className=" hover:underline underline-offset-8 decoration-2 decoration-primary hover:text-primary focus:bg-white hover:bg-white active:bg-white">Dashboard</Link></li>
-        
+        <li><Link href="/admin/all-blogs" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Dashboard</Link></li>
+
       )
     }
   </>
@@ -63,164 +64,92 @@ const Navbar = () => {
     router.push("/auth/login");
   };
 
+  useEffect(() => {
+    // navbar up/down event
+    let lastVal = 0;
+    window.onscroll = function () {
+      let y = window.scrollY;
+      if (y > lastVal) {
+        setIsNavVisible(false);
+      }
+      if (y < lastVal) {
+        setIsNavVisible(true);
+      }
+      if (y === 0) {
+        setIsNavVisible(true);
+      }
+      lastVal = y;
+    };
+  }, []);
+
   return (
     <>
-      {/* <TopNav /> */}
-      {/* <div className='shadow-sm sticky top-0 z-50 bg-base-100'>
-        <div className='mid-container '>
-          <div className="navbar bg-base-100 px-0 py-3">
+      <div
+        className={`border-b border-lightGray duration-500 ${
+          isNavVisible
+          ? "top-0 fixed z-50 w-full bg-white duration-500"
+          : "top-0 md:-top-[110px] fixed z-30 w-full bg-white duration-500"
+        }}`}
+      >
 
-            <div className="navbar-start ">
-              <div className="dropdown">
-                <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                </label>
-                <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                  <Link href='/'>
-                    <li><h6 className='font-semibold text-[16px] hover:bg-base-100 hover:text-primary'>Home</h6></li>
-                  </Link>
-                  <Link href='/all-blogs'>
-                    <li><h6 className='font-semibold text-[16px] hover:bg-base-100 hover:text-primary'>Blogs</h6></li>
-                  </Link>
+        <div className="navbar mid-container">
+          <div className="navbar-start py-7">
+            <div className="dropdown">
+              <label tabIndex={0} className="btn btn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+              </label>
+              <ul tabIndex={0} className="menu menu-sm dropdown-content bg-gray-200 mt-3 p-2 w-52 ">
 
-                  {
-                    userRole === 'admin' && (
-                      <Link href='/admin/all-blogs'>
-                        <li><h6 className='font-semibold text-[16px] hover:bg-base-100 hover:text-primary'>Dashboard</h6></li>
-                      </Link>
-                    )
-                  }
-                </ul>
-              </div>
-
+                <DropDownMenu></DropDownMenu>
+                {menuItem}
+              </ul>
             </div>
-            <div className="flex justify-center items-center navbar-center">
-              <Link href='/' className="ml-3">
+            <div className='cursor-pointer'>
+              <Link href="/">
                 <Image
                   src={logo}
                   alt="logo"
                   width={100}
                   height={100}
-                  className='w-16 md:hidden '
+                  className='py-2 w-36'
                 ></Image>
-
               </Link>
             </div>
-            <div className='navbar-end'>
-              <div className="hidden lg:flex mr-5">
-                <ul className="menu menu-horizontal px-1 hover:bg-base-100">
-                  <Link href='/'>
-                    <li><h6 className='font-semibold text-[16px] hover:bg-base-100 hover:text-primary'>Home</h6></li>
-                  </Link>
-                  <Link href='/all-blogs'>
-                    <li><h6 className='font-semibold text-[16px] hover:bg-base-100 hover:text-primary'>Blogs</h6></li>
-                  </Link>
-                  {
-                    userRole === 'admin' && (
-                      <Link href='/admin/all-blogs'>
-                        <li><h6 className='font-semibold text-[16px] hover:bg-base-100 hover:text-primary'>Dashboard</h6></li>
-                      </Link>
-                    )
-                  }
-                </ul>
-              </div>
-              <div className="flex justify-end gap-4 items-center">
-
-                <div className='lg:hidden '>
-                  {
-                    pathname.includes("admin") && (<label htmlFor="my-drawer-2" tabIndex="1" className=" cursor-pointer">
-                      <MdOutlineDashboard className='text-2xl' />
-                    </label>)
-                  }
-                </div>
-
-              </div>
-
-              <div className="ml-3">
-                {
-                  !token && !user && (
-
-                    <button onClick={() => handleLogin()} className='btn btn-sm btn-primary font-bold text-white'>
-                      Login
-                    </button>
-                  )
-                }
-
-                {
-                  token && userRole === "admin" &&
-                  <button onClick={() => handleLogOut()} className='btn btn-sm btn-error font-bold'>
-                    LogOut
-                  </button>
-                }
-                {
-                  token && userRole === "user" &&
-                  (<button onClick={() => handleLogOut()} className='btn btn-sm btn-error font-bold'>
-                    LogOut
-                  </button>)
-                }
-              </div>
-            </div>
           </div>
-        </div>
-      </div > */}
-
-      {/* new navbar */}
-
-      <div className="navbar mid-container">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-            </label>
-            <ul tabIndex={0} className="menu menu-sm dropdown-content bg-gray-200 mt-3 p-2 w-52 ">
-
+          <div className="navbar-center hidden lg:flex">
+            <ul className="menu menu-horizontal px-1">
               <DropDownMenu></DropDownMenu>
               {menuItem}
             </ul>
           </div>
-          <div className='cursor-pointer'>
-            <Link href="/">
-              <Image
-                src={logo}
-                alt="logo"
-                width={100}
-                height={100}
-                className='py-2 rounded-full'
-              ></Image>
-            </Link>
+          <div className="navbar-end">
+
+            {
+              !token && !user && (
+
+                <button onClick={() => handleLogin()} className="py-2 px-5 font-bold text-[#1D6AAE] outline outline-[#1D6AAE] outline-2 rounded-none hover:bg-[#1D6AAE] hover:text-white">
+                  Client Login
+                </button>
+              )
+            }
+
+            {
+              token && userRole === "admin" &&
+              <button onClick={() => handleLogOut()} className="py-2 px-5 font-bold text-[#1D6AAE] outline outline-[#1D6AAE] outline-2 rounded-none hover:bg-[#1D6AAE] hover:text-white">
+                Log Out
+              </button>
+            }
+            {
+              token && userRole === "user" &&
+              (<button onClick={() => handleLogOut()} className="py-2 px-5 font-bold text-[#1D6AAE] outline outline-[#1D6AAE] outline-2 rounded-none hover:bg-[#1D6AAE] hover:text-white">
+                Log Out
+              </button>)
+            }
           </div>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <DropDownMenu></DropDownMenu>
-            {menuItem}
-          </ul>
-        </div>
-        <div className="navbar-end">
-
-          {
-            !token && !user && (
-
-              <button onClick={() => handleLogin()} className="btn btn-outline rounded-none">
-                Client Login
-              </button>
-            )
-          }
-
-          {
-            token && userRole === "admin" &&
-            <button onClick={() => handleLogOut()} className="btn btn-outline rounded-none">
-              LogOut
-            </button>
-          }
-          {
-            token && userRole === "user" &&
-            (<button onClick={() => handleLogOut()} className="btn btn-outline rounded-none">
-              LogOut
-            </button>)
-          }
-        </div>
       </div>
+
+
     </>
   );
 };
