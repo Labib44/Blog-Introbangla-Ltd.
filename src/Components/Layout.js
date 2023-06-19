@@ -12,11 +12,6 @@ function Layout({ children }) {
     <>
       <Navbar></Navbar>
       <main>{children}</main>
-      {/* {!pathName.includes("admin") ? (
-        <Footers></Footers>
-      ) : (
-        <footer>Dashboarder</footer>
-      )} */}
       {!pathName.includes("admin") && (
         <Footers></Footers>
       )}

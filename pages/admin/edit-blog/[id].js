@@ -23,10 +23,16 @@ const EditBlog = () => {
   const [richText, setValueOfRichText] = useState("");
   const [catInputValue, setCatInputValue] = useState("");
   const [categoryData, setCategoryData] = useState([]);
-  const [update, setUpdate] = useState('');
-  const [isLoading, isSetLoading] = useState(false)
-  const { refresh, setRefresh, loading, setLoading, richTextContent, setRichTextValue } =
-    useContext(CreateContext);
+  const [update, setUpdate] = useState("");
+  const [isLoading, isSetLoading] = useState(false);
+  const {
+    refresh,
+    setRefresh,
+    loading,
+    setLoading,
+    richTextContent,
+    setRichTextValue,
+  } = useContext(CreateContext);
 
   const {
     title,
@@ -43,16 +49,13 @@ const EditBlog = () => {
   const { id } = router.query;
 
   useEffect(() => {
-    setRichTextValue(description)
-  }, [blog])
-
-
-
+    setRichTextValue(description);
+  }, [blog]);
 
   // get blog by id
   useEffect(() => {
     setLoading(true);
-    fetch(` https://backend.lobdho.com/clickthepoint/api/v1/blog/${id}`)
+    fetch(`https://api.introbangla.com/api/v1/blog/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setBlog(data?.data);
@@ -60,16 +63,14 @@ const EditBlog = () => {
       .finally(() => setLoading(false));
   }, [id]);
 
-
   useEffect(() => {
-    fetch(" https://backend.lobdho.com/clickthepoint/api/v1/category")
-      .then(res => res.json())
-      .then(data => {
-        setCategoryData(data)
+    fetch("https://api.introbangla.com/api/v1/category")
+      .then((res) => res.json())
+      .then((data) => {
+        setCategoryData(data);
       })
-      .catch(err => (err))
-  }, [update])
-
+      .catch((err) => err);
+  }, [update]);
 
   const {
     register,
@@ -84,21 +85,24 @@ const EditBlog = () => {
   });
 
   const blogSubmit = async (e) => {
-    e.preventDefault()
-    isSetLoading(true)
-    const pathName =  e.target.title.value.replace(/[&\/@#!$%\^?]/g, "").split(" ").join("-")
+    e.preventDefault();
+    isSetLoading(true);
+    const pathName = e.target.title.value
+      .replace(/[&\/@#!$%\^?]/g, "")
+      .split(" ")
+      .join("-");
     const blog = {
-      title:  e.target.title.value || title,
+      title: e.target.title.value || title,
       path: pathName || path,
-      authorName:  e.target.author.value || authorName,
+      authorName: e.target.author.value || authorName,
       description: richTextContent || description,
-      shortDescription:  e.target.shortDesc.value || shortDescription,
-      category:  e.target.category.value || category,
+      shortDescription: e.target.shortDesc.value || shortDescription,
+      category: e.target.category.value || category,
       tags: selectedProductTag || tags,
       image: imageUrl || image,
     };
 
-    fetch(` https://backend.lobdho.com/clickthepoint/api/v1/blog/${id}`, {
+    fetch(`https://api.introbangla.com/api/v1/blog/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -107,7 +111,7 @@ const EditBlog = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        isSetLoading(false)
+        isSetLoading(false);
         if (result?.status === "success") {
           swal("Blog Updated Successfully", {
             icon: "success",
@@ -136,34 +140,49 @@ const EditBlog = () => {
       });
   };
 
-  const reverseCategory = [...categoryData]
-
+  const reverseCategory = [...categoryData];
 
   EditBlog.modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
-      ['link', 'image', 'video'],
-      ['clean'],
-      ['code-block'],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "image", "video"],
+      ["clean"],
+      ["code-block"],
       [{ size: [] }],
-
-    ]
-  }
+    ],
+  };
 
   EditBlog.formats = [
-    'header',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent',
-    'link', 'image', 'video',
-    'code-block', 'size'
-  ]
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+    "video",
+    "code-block",
+    "size",
+  ];
 
   return (
     <>
       <Head>
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        />
       </Head>
       <DashboardLayout>
         {loading ? (
@@ -220,8 +239,6 @@ const EditBlog = () => {
                 </div>
 
                 <div className="grid grid-cols-2 gap-5">
-
-
                   <div className="mb-5">
                     <div className=" mb-4">
                       <label htmlFor="category" className=" font-semibold ">
@@ -232,21 +249,16 @@ const EditBlog = () => {
                         name="category"
                         id="category"
                       >
-                        {
-                          reverseCategory?.reverse().map((item) =>
-                            <option key={item?._id} >{item.category}</option>
-                          )
-                        }
-
+                        {reverseCategory?.reverse().map((item) => (
+                          <option key={item?._id}>{item.category}</option>
+                        ))}
                       </select>
 
                       <small className="text-[#FF4B2B] text-xs font-medium my-2">
                         {errors?.category?.message}
                       </small>
                     </div>
-
                   </div>
-
                 </div>
 
                 <div className=" mb-4">
@@ -257,8 +269,8 @@ const EditBlog = () => {
                     className="textarea  focus:outline-none w-full lg:h-36 md:h-28 sm:h-36 h-24 mt-0 input input-bordered"
                     placeholder="Write a short description about the blog"
                     name="comment"
-                   id="shortDesc"
-                   defaultValue={shortDescription}
+                    id="shortDesc"
+                    defaultValue={shortDescription}
                   ></textarea>
                 </div>
 
@@ -300,22 +312,18 @@ const EditBlog = () => {
                   )}
                 </div>
 
-                {
-                  !isLoading ? (
-                    <button
-                      type="submit"
-                      className="btn bg-[#3185FC] px-4 py-3 rounded cursor-pointer text-white ml-auto hover:bg-[#2c76dd] mt-5"
-                    >
-                      Edit your Blog
-                    </button>
-                  ) : (
-                    <div className="mt-5">
-                      <LoadingButton />
-                    </div>
-                  )
-                }
-
-
+                {!isLoading ? (
+                  <button
+                    type="submit"
+                    className="btn bg-[#3185FC] px-4 py-3 rounded cursor-pointer text-white ml-auto hover:bg-[#2c76dd] mt-5"
+                  >
+                    Edit your Blog
+                  </button>
+                ) : (
+                  <div className="mt-5">
+                    <LoadingButton />
+                  </div>
+                )}
               </form>
             </div>
           </div>

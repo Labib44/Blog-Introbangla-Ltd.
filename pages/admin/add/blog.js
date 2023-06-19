@@ -24,7 +24,7 @@ const blog = () => {
   const { setRefresh, refresh, richTextContent } = useContext(CreateContext);
   const [catInputValue, setCatInputValue] = useState();
   const [categoryData, setCategoryData] = useState([]);
-  const [update, setUpdate] = useState('');
+  const [update, setUpdate] = useState("");
   const [loading, setLoading] = useState(false);
 
   const {
@@ -35,20 +35,21 @@ const blog = () => {
     formState: { errors },
   } = useForm();
 
-
   useEffect(() => {
-    fetch(" https://backend.lobdho.com/clickthepoint/api/v1/category")
-      .then(res => res.json())
-      .then(data => {
-        setCategoryData(data)
-
+    fetch("https://api.introbangla.com/api/v1/category")
+      .then((res) => res.json())
+      .then((data) => {
+        setCategoryData(data);
       })
-      .catch(err => (err))
-  }, [update])
+      .catch((err) => err);
+  }, [update]);
 
   const blogSubmit = async (data) => {
-    setLoading(true)
-    const pathName = data.title.replace(/[&\/@#!$%\^?]/g, "").split(" ").join("-")
+    setLoading(true);
+    const pathName = data.title
+      .replace(/[&\/@#!$%\^?]/g, "")
+      .split(" ")
+      .join("-");
     const blog = {
       title: data.title,
       path: pathName,
@@ -61,8 +62,7 @@ const blog = () => {
       image: imageUrl,
     };
 
-
-    fetch(" https://backend.lobdho.com/clickthepoint/api/v1/blog", {
+    fetch("https://api.introbangla.com/api/v1/blog", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -71,7 +71,7 @@ const blog = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        setLoading(false)
+        setLoading(false);
         if (result?.status === "success") {
           router.push("/admin/all-blogs");
           setRefresh(!refresh);
@@ -82,43 +82,38 @@ const blog = () => {
       })
       .catch((err) => {
         toast.error("Image upto 1MB");
-      }
-      );
+      });
   };
 
-
-  
   // const imgUrl = `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_IMGBB_API_KEY}`;
 
- 
   const handleImageUpload = (e) => {
-    setLoading(true)
+    setLoading(true);
     const image = e.target.files[0];
     const formData = new FormData();
     formData.append("image", image);
 
-    fetch(' https://backend.lobdho.com/clickthepoint/api/v1/upload/single-image-upload', {
+    fetch("https://api.introbangla.com/api/v1/upload/single-image-upload", {
       method: "POST",
       body: formData,
     })
       .then((res) => res.json())
       .then((result) => {
-        setLoading(false)
+        setLoading(false);
         setImageUrl(result?.url);
       })
       .catch((err) => {
-        setLoading(false)
+        setLoading(false);
         toast.error("Something went wrong! please try again later!");
       });
   };
 
-
-  const categoryValue = catInputValue
-  const inputValue = catInputValue
+  const categoryValue = catInputValue;
+  const inputValue = catInputValue;
 
   // const handleAddCategory = (e) => {
   //   if (catInputValue) {
-  //     fetch(" https://backend.lobdho.com/clickthepoint/api/v1/category", {
+  //     fetch("https://api.introbangla.com/api/v1/category", {
   //       method: "POST",
   //       headers: {
   //         "Content-Type": "application/json",
@@ -136,31 +131,48 @@ const blog = () => {
   //   }
   // }
 
-  const reverseCategory = [...categoryData]
+  const reverseCategory = [...categoryData];
 
   blog.modules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
-      ['link', 'image', 'video'],
-      ['clean'],
-      ['code-block'],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "image", "video"],
+      ["clean"],
+      ["code-block"],
       // [{ size: [] }],
-    ]
-  }
+    ],
+  };
   blog.formats = [
-    'header',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent',
-    'link', 'image', 'video',
-    'code-block', 'size'
-  ]
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+    "video",
+    "code-block",
+    "size",
+  ];
 
   return (
     <>
       <Head>
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        />
       </Head>
       <DashboardLayout>
         <div className="sm:py-10 py-5">
@@ -251,8 +263,6 @@ const blog = () => {
                   </div>
                 </div>
 
-
-
                 <div className="mb-5">
                   <div className=" mb-4">
                     <label htmlFor="category" className=" font-semibold ">
@@ -267,12 +277,9 @@ const blog = () => {
                         trigger("category");
                       }}
                     >
-
-                      {
-                        reverseCategory?.reverse().map((item) =>
-                          <option key={item?._id} >{item.category}</option>
-                        )
-                      }
+                      {reverseCategory?.reverse().map((item) => (
+                        <option key={item?._id}>{item.category}</option>
+                      ))}
                     </select>
 
                     <small className="text-[#FF4B2B] text-xs font-medium my-2">
@@ -297,7 +304,6 @@ const blog = () => {
 
                   </div> */}
                 </div>
-
               </div>
 
               <div className=" mb-4">
@@ -334,7 +340,7 @@ const blog = () => {
                     onChange={setValueOfRichText}
                     style={{ height: 350, marginBottom: 12 }}
                   /> */}
-                  <RichText/>
+                  <RichText />
                 </div>
               </div>
 
@@ -367,24 +373,20 @@ const blog = () => {
                 )}
               </div>
 
-              {
-                !loading && (
-                  <button
-                    disabled={!imageUrl}
-                    type="submit"
-                    className="btn bg-[#3185FC] px-4 py-3 rounded cursor-pointer text-white ml-auto hover:bg-[#2570da] mt-5"
-                  >
-                    {imageUrl ? "Publish your Blog" : "Please upload image"}
-                  </button>
-                )
-              }
-              {
-                loading && (
-                  <div className='mt-5'>
-                    <LoadingButton />
-                  </div>
-                )
-              }
+              {!loading && (
+                <button
+                  disabled={!imageUrl}
+                  type="submit"
+                  className="btn bg-[#3185FC] px-4 py-3 rounded cursor-pointer text-white ml-auto hover:bg-[#2570da] mt-5"
+                >
+                  {imageUrl ? "Publish your Blog" : "Please upload image"}
+                </button>
+              )}
+              {loading && (
+                <div className="mt-5">
+                  <LoadingButton />
+                </div>
+              )}
             </form>
           </div>
         </div>
