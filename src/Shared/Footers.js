@@ -15,41 +15,41 @@ const Footers = () => {
   const fristLinkData = [
     {
       title: "Web development",
-      url: "#",
+      url: "https://www.introbangla.com/custom-software-development",
     },
     {
       title: "App Development",
-      url: "#",
+      url: "https://www.introbangla.com/mobile-and-desktop-development",
     },
     {
       title: "QA & Test Automation",
-      url: "#",
+      url: "https://www.introbangla.com/qa-and-testing",
     },
     {
       title: "UI/UX Design",
-      url: "#",
+      url: "https://www.introbangla.com/ui-ux-design",
     },
     {
       title: "SEO Optimization",
-      url: "#",
+      url: "https://www.introbangla.com/ui-ux-design",
     },
     {
       title: "Digital Marketing",
-      url: "#",
+      url: "https://www.introbangla.com/ui-ux-design",
     },
   ];
   const secondLinkData = [
     {
       title: "Overview",
-      url: "#",
+      url: "https://www.introbangla.com/overview",
     },
     {
       title: "Team",
-      url: "#",
+      url: "https://www.introbangla.com/team",
     },
     {
       title: "portfolio",
-      url: "#",
+      url: "https://www.introbangla.com/our-portfolio",
     },
     {
       title: "Career",
@@ -57,11 +57,11 @@ const Footers = () => {
     },
     {
       title: "Contact",
-      url: "#",
+      url: "https://www.introbangla.com/contact-us",
     },
     {
       title: "Privacy Policy",
-      url: "#",
+      url: "https://www.introbangla.com/privacy-policy",
     },
   ];
 
@@ -93,14 +93,14 @@ const Footers = () => {
               <div className="flex flex-col">
                 {
                   fristLinkData.map((data,idx)=>
-                  <a key={idx} className=' text-[16px] font-serif pt-2 hover:underline underline-offset-1 flex items-center' href="#"><span><BsDot className="w-8 h-8"></BsDot></span> {data.title}</a>
+                  <a key={idx} href={data.url} target="_blank" className=' text-[16px] font-serif pt-2 hover:underline underline-offset-1 flex items-center'><span><BsDot className="w-8 h-8"></BsDot></span> {data.title}</a>
                   )
                 }
               </div>
               <div className="flex flex-col">
                 {
                   secondLinkData.map((data,idx)=>
-                  <a key={idx} className=' text-[16px] font-serif pt-2 hover:underline underline-offset-1 flex items-center' href="#"><span><BsDot className="w-8 h-8"></BsDot></span> {data.title}</a>
+                  <a key={idx} href={data.url} target="_blank" className=' text-[16px] font-serif pt-2 hover:underline underline-offset-1 flex items-center'><span><BsDot className="w-8 h-8"></BsDot></span> {data.title}</a>
                   )
                 }
               </div>

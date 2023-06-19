@@ -127,7 +127,7 @@ const Navbar = () => {
             {
               !token && !user && (
 
-                <button onClick={() => handleLogin()} className="py-2 px-5 font-bold text-[#1D6AAE] outline outline-[#1D6AAE] outline-2 rounded-none hover:bg-[#1D6AAE] hover:text-white">
+                <button onClick={()=>handleLogin()} className="py-2 px-5 font-bold text-[#1D6AAE] outline outline-[#1D6AAE] outline-2 rounded-none hover:bg-[#1D6AAE] hover:text-white">
                   Client Login
                 </button>
               )
@@ -140,7 +140,7 @@ const Navbar = () => {
               </button>
             }
             {
-              token && userRole === "user" &&
+               token && userRole === "user" &&
               (<button onClick={() => handleLogOut()} className="py-2 px-5 font-bold text-[#1D6AAE] outline outline-[#1D6AAE] outline-2 rounded-none hover:bg-[#1D6AAE] hover:text-white">
                 Log Out
               </button>)
