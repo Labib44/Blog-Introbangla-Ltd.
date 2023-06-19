@@ -29,9 +29,9 @@ const Navbar = () => {
   const userRole = user?.role;
 
   const menuItem = <>
-    <li><Link href="/" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Techonology</Link></li>
-    <li><Link href="/" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Portfolio</Link></li>
-    <li><Link href="/all-blogs" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Blog</Link></li>
+    <li><Link href="https://www.introbangla.com/technology" target="_blank" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Techonology</Link></li>
+    <li><Link href="https://www.introbangla.com/our-portfolio" target="_blank" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Portfolio</Link></li>
+    <li><Link href="https://blog.introbangla.com/" target="_blank" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Blog</Link></li>
     <li><Link href="/" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Contact</Link></li>
     {
       userRole === 'admin' && (
@@ -93,7 +93,7 @@ const Navbar = () => {
       >
 
         <div className="navbar container mx-auto px-16">
-          <div className="navbar-start py-4">
+          <div className="navbar-start py-2">
             <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost lg:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>

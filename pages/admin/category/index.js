@@ -51,13 +51,13 @@ const index = () => {
             const image = state.image;
             const formData = new FormData();
             formData.append("image", image);
-            fetch("http://localhost:7000/api/v1/upload/single-image-upload", {
+            fetch("https://api.introbangla.com/api/v1/upload/single-image-upload", {
                 method: "POST",
                 body: formData,
             })
                 .then((res) => res.json())
                 .then((result) => {
-                    fetch("http://localhost:7000/api/v1/category", {
+                    fetch("https://api.introbangla.com/api/v1/category", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
