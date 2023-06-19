@@ -19,9 +19,9 @@ const PopularBlogs = () => {
     const mostClickBlog = blogs.sort((a, b) => b.clickCounter - a.clickCounter);
 
     return (
-        <>
-            <section className='mid-container'>
-                <div className='flex justify-between items-center mt-16 mb-5'>
+        <div className='mt-40'>
+            <section className='container mx-auto px-16'>
+                <div className='flex justify-between items-center mb-5'>
                     <h1 className='text-2xl font-semibold mb-3 border-b-[1px] w-48 pb-2'>Popular Blogs</h1>
                     <Link href='/all-blogs'> <h1 className='font-bold cursor-pointer mr-5'>See All</h1></Link>
                 </div>
@@ -91,7 +91,7 @@ const PopularBlogs = () => {
                             </div> */}
                 </div>
             </section >
-        </>
+        </div>
     );
 };
 

@@ -10,14 +10,17 @@ const DropDownMenu = () => {
       subMenus: [
         {
           name: "Overview",
+          url: "https://www.introbangla.com/overview"
 
         },
         {
           name: "Team",
+          url: "https://www.introbangla.com/team"
 
         },
         {
           name: "Our Clients",
+          url: "https://www.introbangla.com/our-clients"
 
         },
       ],
@@ -64,7 +67,7 @@ const DropDownMenu = () => {
               
               <div className="group relative cursor-pointer py-2">
                 <div className="flex items-center bg-gray-200 lg:bg-white px-2">
-                  <a className="menu-hover px-2 lg:my-2 lg:py-2 font-medium hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] lg:mx-4" onClick="">{menu.name}</a>
+                  <a className="menu-hover px-2 lg:my-2 lg:py-2 font-medium hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE]" onClick="">{menu.name}</a>
                   <span>
                     <FiChevronDown></FiChevronDown>
                   </span>
@@ -76,7 +79,7 @@ const DropDownMenu = () => {
                       return (
                         <div key={idx}
                           onClick="">
-                          <a href="/" className="mt-2 block  py-2 text-black hover:text-white hover:bg-[#1D6AAE] p-2 md:mx-2">{subMenu.name}</a>
+                          <a href={subMenu.url} target='_blank' className="mt-2 block  py-2 text-black hover:text-white hover:bg-[#1D6AAE] p-2 md:mx-2">{subMenu.name}</a>
                         </div>
                       )
                     })

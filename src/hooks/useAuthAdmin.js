@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import Router from 'next/router';
 import CreateContext from '../Components/CreateContex';
-import LoadingComponents from '../Shared/LoadingComponents';
+/* import LoadingComponents from '../Shared/LoadingComponents'; */
 
 const useAuthAdmin = (WrappedComponent) => {
 

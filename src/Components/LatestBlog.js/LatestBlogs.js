@@ -14,7 +14,7 @@ const LatestBlogs = () => {
 
     return (
         <>
-            <div className='mid-container'>
+            <div className='container mx-auto px-16'>
                 <div className='md:mt-40 mt-10 pb-10'>
                     <div className='flex justify-between items-center'>
                         <h1 className='text-2xl font-semibold mb-3 border-b-[1px] w-48 pb-2'>Latest Blogs</h1>
