@@ -11,8 +11,9 @@ import CreateContext from "../../src/Components/CreateContex";
 import auth from "../../src/Shared/firebaseInit";
 
 
+
 const Login = () => {
-  const { setUpdate } = useContext(CreateContext);
+  const { setUpdate,setUser } = useContext(CreateContext);
   const {
     register,
     formState: { errors },
@@ -32,7 +33,6 @@ const Login = () => {
 
   const onSubmitForm = data => {
     signInWithEmailAndPassword(data.email, data.password)
-
   }
 
   useEffect(() => {
@@ -130,6 +130,7 @@ const Login = () => {
   //     router.push("/");
   //   }
   // };
+
   return (
     <div className="mid-container">
       <div className="flex justify-center items-center my-32">
@@ -156,6 +157,7 @@ const Login = () => {
                   onKeyUp={(e) => {
                     trigger("email");
                   }}
+                  required
                 />
                 <small className="text-[#FF4B2B] text-xs ml-2 font-medium my-2">
                   {errors?.email?.message}
@@ -182,6 +184,7 @@ const Login = () => {
                   onKeyUp={() => {
                     trigger("password");
                   }}
+                  required
                 />
                 <small className="text-[#FF4B2B] ml-2 text-xs font-medium my-2">
                   {errors?.password?.message}
