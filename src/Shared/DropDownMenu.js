@@ -10,14 +10,17 @@ const DropDownMenu = () => {
       subMenus: [
         {
           name: "Overview",
+          url: "https://www.introbangla.com/overview"
 
         },
         {
           name: "Team",
+          url: "https://www.introbangla.com/team"
 
         },
         {
           name: "Our Clients",
+          url: "https://www.introbangla.com/our-clients"
 
         },
       ],
@@ -76,7 +79,7 @@ const DropDownMenu = () => {
                       return (
                         <div key={idx}
                           onClick="">
-                          <a href="/" className="mt-2 block  py-2 text-black hover:text-white hover:bg-[#1D6AAE] p-2 md:mx-2">{subMenu.name}</a>
+                          <a href={subMenu.url} target='_blank' className="mt-2 block  py-2 text-black hover:text-white hover:bg-[#1D6AAE] p-2 md:mx-2">{subMenu.name}</a>
                         </div>
                       )
                     })

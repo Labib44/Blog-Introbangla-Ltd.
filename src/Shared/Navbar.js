@@ -32,7 +32,7 @@ const Navbar = () => {
     <li><Link href="https://www.introbangla.com/technology" target="_blank" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Techonology</Link></li>
     <li><Link href="https://www.introbangla.com/our-portfolio" target="_blank" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Portfolio</Link></li>
     <li><Link href="https://blog.introbangla.com/" target="_blank" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Blog</Link></li>
-    <li><Link href="/" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Contact</Link></li>
+    <li><Link href="https://www.introbangla.com/contact-us" target="_blank" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Contact</Link></li>
     {
       userRole === 'admin' && (
         <li><Link href="/admin/all-blogs" className=" hover:underline underline-offset-8 decoration-2 decoration-[#1D6AAE] hover:text-[#1D6AAE] focus:bg-white hover:bg-white active:bg-white">Dashboard</Link></li>
