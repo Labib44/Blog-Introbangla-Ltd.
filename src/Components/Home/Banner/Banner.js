@@ -19,7 +19,7 @@ const Banner = () => {
 
 
   return (
-    <section className="mid-container">
+    <section className="mid-container relative top-28">
       <div className="md:flex  gap-6">
         <div className="md:w-[60%] md:order-2 order-1">
           <div className="mb-5">

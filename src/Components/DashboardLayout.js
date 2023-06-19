@@ -7,7 +7,7 @@ import { BsDash } from 'react-icons/bs';
 const DashboardLayout = ({ children }) => {
 
   return (
-    <div className="drawer drawer-mobile bg-[#F9FAFB]">
+    <div className="drawer drawer-mobile bg-[#F9FAFB] relative top-28">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content lg:px-[5%] md:px-10 px-5">{children}</div>
 
