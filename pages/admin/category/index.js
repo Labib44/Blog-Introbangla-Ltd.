@@ -20,7 +20,7 @@ const index = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://backend.lobdho.com/clickthepoint/api/v1/category")
+    fetch("https://api.introbangla.com/api/v1/category")
       .then((res) => res.json())
       .then((data) => {
         setCategoryData(data);

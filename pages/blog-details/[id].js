@@ -37,16 +37,15 @@ const BlogDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const { blogs, refresh, setRefresh, setUpdate } = useContext(CreateContext);
-  const url = `${process.browser ? window.location.origin : ""}${
-    router.asPath
-  }`;
+  const url = `${process.browser ? window.location.origin : ""}${router.asPath
+    }`;
 
   // copy text to clipboard on click of copy button
   const handleCopy = () => {
     swal("Link Copied", {
       icon: "success",
     });
-    setTimeout(() => {}, 2000);
+    setTimeout(() => { }, 2000);
   };
 
   useEffect(() => {
@@ -61,7 +60,7 @@ const BlogDetails = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://backend.lobdho.com/clickthepoint/api/v1/blog?path=${id}`)
+    fetch(`https://api.introbangla.com/api/v1/blog?path=${id}`)
       .then((res) => res.json())
       .then((data) => {
         setBlog(data?.data.blogs[0]);
