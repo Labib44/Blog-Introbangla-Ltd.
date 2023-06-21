@@ -160,7 +160,7 @@ const BlogDetails = () => {
         />
       </Head>
       <div className="mid-container">
-        <div className="lg:flex md:flex mt-10">
+        <div className="lg:flex md:flex mt-32">
           {loading ? (
             <>
               <div className="lg:w-[70%] md:w-[70%] lg:mb-0 md:mb-0 sm:mb-5 mb-5 lg:border-r-[1px] md:border-r-[1px] lg:pr-8 md:pr-5">

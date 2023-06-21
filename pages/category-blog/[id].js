@@ -40,7 +40,7 @@ const CategoryBlog = () => {
     return (
         <div>
             <div className='mid-container'>
-                <div className=' mt-10 pb-20'>
+                <div className=' mt-28 pb-20'>
                     <div className='sm:flex justify-between items-center mb-5'>
                         <h1 className='text-2xl font-semibold mb-3 border-b-[1px] w-72 pb-2'>Blogs for <span className='text-warning'>{id}</span></h1>
                         {/* <Link href='/all-blogs'> <h1 className='font-bold cursor-pointer mr-5'>See All</h1></Link> */}
