@@ -77,7 +77,7 @@ const index = () => {
     return (
         <div className="mid-container">
             <div className="mt-5 mb-5">
-                <h1 className="text-4xl text-center font-bold">All Blogs</h1>
+                <h1 className="text-4xl text-center font-bold ">All Blogs</h1>
                 {/* <p className='text-sm text-center mt-2'>Travel, inspiration and tips for your next adventure. Discover the world with us!</p> */}
             </div>
 
