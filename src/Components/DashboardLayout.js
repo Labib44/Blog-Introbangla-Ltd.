@@ -16,13 +16,6 @@ const DashboardLayout = ({ children }) => {
         <ul className="menu p-4 overflow-y-auto lg:w-72 w-56  bg-base-100 border-r  py-10 ">
           {/* <!-- Sidebar content here --> */}
 
-          <li className='mb-2'><Link
-            className='flex justify-between items-center' href={'/admin/all-blogs'}>
-            <h6 className='font-bold text-[15px]'> All Blogs</h6>
-            {/* <FontAwesomeIcon icon={faListCheck} /> */}
-            <AiOutlineRight />
-          </Link></li>
-
           <li className='mb-2'>
             <Link
               className='flex justify-between items-center' href={'/admin/category'}>
@@ -30,6 +23,15 @@ const DashboardLayout = ({ children }) => {
               <AiOutlineRight />
             </Link>
           </li>
+          
+          <li className='mb-2'><Link
+            className='flex justify-between items-center' href={'/admin/all-blogs'}>
+            <h6 className='font-bold text-[15px]'> All Blogs</h6>
+            {/* <FontAwesomeIcon icon={faListCheck} /> */}
+            <AiOutlineRight />
+          </Link></li>
+
+          
 
           <li className='mb-2'><Link
             className='flex justify-between items-center' href={'/admin/add/blog'}>
