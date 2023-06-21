@@ -3,7 +3,7 @@ import CreateContext from "../Components/CreateContex";
 import { toast } from "react-hot-toast";
 import swal from "sweetalert";
 
-const CommentDeleteModal = ({ comment,setFetchData, setOpenDeleteModal }) => {
+const CommentDeleteModal = ({ comment, setFetchData, setOpenDeleteModal }) => {
     const { _id } = comment;
     const { setRefresh, refresh } = useContext(CreateContext);
 
@@ -24,7 +24,7 @@ const CommentDeleteModal = ({ comment,setFetchData, setOpenDeleteModal }) => {
 
     const handleDelete = () => {
         setOpenDeleteModal(false);
-        fetch(`https://backend.lobdho.com/clickthepoint/api/v1/blog/comment/${_id}`, {
+        fetch(`https://api.introbangla.com/api/v1/blog/comment/${_id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
