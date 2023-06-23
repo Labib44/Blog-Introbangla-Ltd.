@@ -105,7 +105,7 @@ const Navbar = () => {
               </ul>
             </div>
             <div className='cursor-pointer'>
-              <Link href="/">
+              <a href="https://www.introbangla.com" target="_blank">
                 <Image
                   src={logo}
                   alt="logo"
@@ -113,7 +113,7 @@ const Navbar = () => {
                   height={100}
                   className='py-2 w-36'
                 ></Image>
-              </Link>
+              </a>
             </div>
           </div>
           <div className="navbar-center hidden lg:flex">
